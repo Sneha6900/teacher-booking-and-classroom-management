@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Classroom Management Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #F9F3EF;
+      color: #1B3C53;
+    }
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5vw;
+      padding: 6vw 5vw 4vw 5vw;
+      min-height: 65vh;
+      background: #F9F3EF;
+    }
+    .hero-content {
+      max-width: 520px;
+      z-index: 2;
+    }
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      color: #1B3C53;
+      letter-spacing: 0.04em;
+    }
+    .hero-desc {
+      font-size: 1.19rem;
+      margin-bottom: 2.2rem;
+      color: #1B3C53;
+    }
+    .cta-btn {
+      background: #1B3C53;
+      color: #fff;
+      font-size: 1.11rem;
+      font-weight: bold;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(27, 60, 83, 0.10);
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.22s, transform 0.17s;
+      margin-bottom: 1.6rem;
+      display: inline-block;
+    }
+    .cta-btn:hover { box-shadow: 0 7px 32px rgba(40,51,74,0.16); transform: translateY(-2px) scale(1.04);}
+    .hero-illus {
+      flex: 1;
+      min-width: 320px;
+      max-width: 430px;
+      margin-left: 1vw;
+      background: #D2C1B6;
+      border-radius: 18px;
+      box-shadow: 0 8px 48px rgba(27,60,83,0.13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+    }
+    .hero-illus img {
+      max-width: 100%;
+      width: 380px;
+      border-radius: 1rem;
+      box-shadow: 0 6px 32px rgba(60,60,83,0.12);
+    }
+
+    /* Features section */
+    .features-section {
+      background: #D2C1B6;
+      padding: 4vw 4vw 3vw 4vw;
+      max-width: 1300px;
+      margin: 0 auto;
+      border-radius: 18px;
+      margin-bottom: 2.5rem;
+    }
+    .features-title {
+      text-align: center;
+      font-size: 2.1rem;
+      margin-bottom: 1.7rem;
+      font-weight: 800;
+      color: #1B3C53;
+      letter-spacing: .01em;
+    }
+    .features-grid {
+      display: flex;
+      gap: 2.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0px 8px 36px 8px rgba(27,60,83,0.086);
+      padding: 2rem 1.7rem 1.4rem 1.7rem;
+      min-width: 250px;
+      max-width: 310px;
+      text-align: center;
+      margin-bottom: 1.50rem;
+      transition: transform .18s, box-shadow .21s;
+    }
+    .feature-card:hover {
+      transform: translateY(-11px) scale(1.04);
+      box-shadow: 0 17px 54px 14px rgba(27,60,83,0.13);
+    }
+    .feat-icon {
+      font-size: 2.55rem;
+      margin-bottom: 1rem;
+      color: #1B3C53;
+      display: block;
+    }
+    .feat-title {
+      font-weight: 700;
+      font-size: 1.19rem;
+      margin-bottom: .35rem;
+      color: #1B3C53;
+      letter-spacing: .01em;
+    }
+    .feat-desc {
+      font-size: 1.05rem;
+      color: #27374A;
+    }
+    .study-images-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      margin-top: 2.2rem;
+      flex-wrap: wrap;
+    }
+    .study-img-box {
+      background: #fff;
+      border-radius: 11px;
+      padding: 0.5rem;
+      box-shadow: 0 4px 24px 4px rgba(27,60,83,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 330px;
+      min-width: 220px;
+      height: 160px;
+    }
+    .study-img-box img {
+      max-width: 98%; width: 100%; height: 140px; object-fit: cover; border-radius: 7px;
+    }
+    .footer {
+      padding: 2rem 1vw 0.5rem 1vw;
+      font-size: 1.07rem;
+      font-weight: 500;
+      color: #1B3C53;
+      text-align: center;
+      opacity: 0.8;
+    }
+    @media (max-width: 1024px) {
+      .hero-section { flex-direction: column; text-align: center; gap: 2vh;}
+      .hero-illus { margin: 2.3rem auto 0 auto;}
+      .features-section { padding: 6vw 2vw;}
+    }
+    @media (max-width: 700px) {
+      .hero-section { padding: 10vw 1vw 6vw 1vw; }
+      .features-grid { flex-direction: column; gap: 1.3rem;}
+      .feature-card { min-width: 90vw;}
+      .footer { font-size: .99rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero section Start -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-title">All-in-One Classroom Management Solution</div>
+      <div class="hero-desc">
+        Organize classrooms, manage seat booking, share notifications, and analyze usage—all in one easy platform.<br>
+        Seamlessly crafted for <b>Teachers</b>, <b>Students</b>, and <b>Administrators</b>.
+      </div>
+      <a class="cta-btn" href="login.html">Get Started</a>
+      <div style="font-size:1.04rem;color:#1B3C53;margin-top:0.8rem;">No installation required—works in any browser!</div>
+    </div>
+    <!-- Educational illustration -->
+    <div class="hero-illus">
+      <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80" alt="Students in a classroom" />
+    </div>
+  </section>
+
+  <div class="study-images-row">
+  </div>
+
+  <!-- Features section Start -->
+  <section class="features-section">
+    <div class="features-title">Why Choose Us?</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feat-icon">👨‍🏫</div>
+        <div class="feat-title">Teacher Booking</div>
+        <div class="feat-desc">
+          Schedule and manage classroom bookings for courses or events with just a few clicks.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🎓</div>
+        <div class="feat-title">Student Seat Selection</div>
+        <div class="feat-desc">
+          Interactive seat maps let students easily reserve and confirm their favorite spots.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🔔</div>
+        <div class="feat-title">Instant Notifications</div>
+        <div class="feat-desc">
+          Built-in notification system keeps everyone updated on schedules and bookings.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">Admin Dashboard</div>
+        <div class="feat-desc">
+          Analyze room utilization, manage users, and generate reports in real time.
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">Secure & Easy Access</div>
+        <div class="feat-desc">
+          Role-based logins ensure security for teachers, students, and admins.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    &copy; 2025 Classroom Management Platform · Made for seamless learning
+  </div>
+</body>
+</html>

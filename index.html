@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Signup</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #D2C1B6;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .split {
+  display: flex;
+  width: 900px;
+  height: 520px;
+  min-height: 0;
+  box-shadow: 0 8px 32px rgba(27,60,83,0.13);
+  border-radius: 24px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+    }
+    .left-panel {
+  flex: 1;
+  position: relative;
+  background: none;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+    }
+    .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  z-index: 2;
+  position: relative;
+  filter: none;
+  transition: none;
+    }
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(120deg, rgba(27,60,83,0.08) 0%, rgba(249,243,239,0.18) 100%);
+      z-index: 1;
+    }
+    .parallax {
+      position: absolute;
+      top: 10%; left: 5%;
+      width: 120px; height: 120px;
+      opacity: 0.13;
+      z-index: 0;
+    }
+    .right-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.85);
+  position: relative;
+  min-width: 340px;
+  z-index: 2;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+    }
+    .glass-form {
+      background: rgba(255,255,255,0.35);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(27,60,83,0.18);
+      backdrop-filter: blur(12px);
+      padding: 2.2rem 2rem 1.5rem 2rem;
+      max-width: 370px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+    }
+    .glass-form h2 {
+      text-align: center;
+      margin: 0;
+      color: #1B3C53;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.7);
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: #1B3C53;
+      box-shadow: 0 0 0 2px #F9F3EF;
+      outline: none;
+    }
+    .input-group .toggle-password {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #888;
+      transition: color 0.2s;
+    }
+    .input-group .toggle-password:hover {
+      color: #1B3C53;
+    }
+    .social-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+    .social-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #fff;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(27,60,83,0.10);
+      padding: 0.7rem 0.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1B3C53;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+    }
+    .social-btn:hover {
+      background: #F9F3EF;
+      box-shadow: 0 4px 16px rgba(27,60,83,0.18);
+      transform: scale(1.07);
+    }
+    .login-btn {
+      background: linear-gradient(90deg, #1B3C53 0%, #27496d 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 8px rgba(27,60,83,0.10);
+    }
+    .login-btn:hover {
+      background: linear-gradient(90deg, #27496d 0%, #1B3C53 100%);
+      box-shadow: 0 4px 16px rgba(27,60,83,0.18);
+      transform: scale(1.03);
+    }
+    .forgot {
+      text-align: right;
+      font-size: 0.95rem;
+    }
+    .forgot a {
+      color: #1B3C53;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .forgot a:hover {
+      color: #27496d;
+    }
+    .custom-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    .custom-checkbox input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #1B3C53;
+      background: #fff;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+    .custom-checkbox input[type="checkbox"]:checked {
+      background: #1B3C53;
+      border-color: #27496d;
+    }
+    .custom-checkbox input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 6px; top: 2px;
+      width: 6px; height: 12px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .custom-checkbox label {
+      font-size: 0.95rem;
+      color: #1B3C53;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .custom-checkbox input[type="checkbox"]:focus {
+      outline: 2px solid #F9F3EF;
+    }
+    .message {
+      text-align: center;
+      font-size: 1rem;
+      margin-top: -1rem;
+      min-height: 1.2em;
+      transition: color 0.2s;
+    }
+    .spinner {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border: 3px solid #F9F3EF;
+      border-top: 3px solid #1B3C53;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes slideIn {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      .split {
+        flex-direction: column;
+        width: 98vw;
+        height: auto;
+        min-height: 0;
+      }
+      .left-panel, .right-panel {
+        min-height: 200px;
+        flex: unset;
+        width: 100%;
+        height: 220px;
+      }
+      .hero-img {
+        width: 90vw;
+        height: 180px;
+        min-width: 120px;
+        object-fit: contain;
+      }
+    }
+    @media (max-width: 600px) {
+      .glass-form {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        max-width: 98vw;
+      }
+      .hero-img {
+        width: 90vw;
+        min-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="split">
+    <div class="left-panel">
+  <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/9cea1888-909f-4675-80a7-e625485f2a18.png">
+    </div>
+    <div class="right-panel">
+      <form class="glass-form" id="loginForm" autocomplete="off">
+  <h2>Login</h2>
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Username" required autofocus>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password" required>
+          <span class="toggle-password" onclick="togglePassword()">
+            <img id="eyeIcon" src="https://cdn.jsdelivr.net/gh/feathericons/feather/icons/eye.svg" alt="Show Password" style="width:22px;height:22px;vertical-align:middle;cursor:pointer;">
+          </span>
+        </div>
+        <div class="input-group">
+          <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
+            <option value="admin">Administrator</option>
+          </select>
+        </div>
+        <div class="forgot">
+          <a href="#" id="forgotLink">Forgot password?</a>
+        </div>
+        <div class="custom-checkbox" onclick="document.getElementById('rememberMe').click()">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <button type="submit" class="login-btn" id="loginBtn">Log In</button>
+        <p id="loginMessage" class="message"></p>
+      </form>
+      <div id="forgotModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(27,60,83,0.18);z-index:10;align-items:center;justify-content:center;">
+        <div style="background:rgba(255,255,255,0.95);border-radius:16px;box-shadow:0 8px 32px rgba(27,60,83,0.18);padding:2rem 1.5rem;max-width:350px;width:90vw;position:relative;animation:slideIn 0.4s cubic-bezier(.68,-0.55,.27,1.55);">
+          <span style="position:absolute;top:1rem;right:1rem;cursor:pointer;font-size:1.3rem;color:#1B3C53;" onclick="closeForgotModal()">&times;</span>
+          <h3 style="margin-top:0;color:#1B3C53;">Forgot Password</h3>
+          <input type="email" id="forgotEmail" placeholder="Enter your email" style="width:100%;padding:0.7rem 1rem;margin:1rem 0 0.5rem 0;border-radius:8px;border:1px solid #ddd;font-size:1rem;">
+          <div id="forgotError" style="color:red;font-size:0.95rem;margin-bottom:0.5rem;"></div>
+          <button onclick="sendReset()" style="background:#1B3C53;color:#fff;border:none;border-radius:8px;padding:0.5rem 0;width:100%;font-size:1rem;cursor:pointer;">Send Reset Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Parallax effect for hero image and book SVG
+    document.addEventListener('mousemove', function(e) {
+      const hero = document.getElementById('heroImg');
+      const book = document.getElementById('parallaxBook');
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      hero.style.transform = `translate(${x}px, ${y}px)`;
+      book.style.transform = `translate(${x/2}px, ${y/2}px)`;
+    });
+    function togglePassword() {
+      const pwd = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        eyeIcon.src = 'https://cdn.jsdelivr.net/gh/feathericons/feather/icons/eye-off.svg';
+        eyeIcon.alt = 'Hide Password';
+      } else {
+        pwd.type = 'password';
+        eyeIcon.src = 'https://cdn.jsdelivr.net/gh/feathericons/feather/icons/eye.svg';
+        eyeIcon.alt = 'Show Password';
+      }
+    }
+    // Social login hover effect
+    document.querySelectorAll('.social-btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'scale(1.07)';
+        btn.style.boxShadow = '0 4px 16px rgba(27,60,83,0.18)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'scale(1)';
+        btn.style.boxShadow = '0 2px 8px rgba(27,60,83,0.10)';
+      });
+    });
+    // Forgot password modal
+    document.getElementById('forgotLink').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('forgotModal').style.display = 'flex';
+    };
+    function closeForgotModal() {
+      document.getElementById('forgotModal').style.display = 'none';
+      document.getElementById('forgotEmail').value = '';
+      document.getElementById('forgotError').textContent = '';
+    }
+    function sendReset() {
+      const email = document.getElementById('forgotEmail').value.trim();
+      const errorDiv = document.getElementById('forgotError');
+      errorDiv.textContent = '';
+      if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        errorDiv.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      errorDiv.style.color = '#1B3C53';
+      errorDiv.textContent = 'Sending reset link...';
+      setTimeout(() => {
+        errorDiv.textContent = 'Reset link sent! Check your email.';
+      }, 1200);
+    }
+    // Real-time validation
+    document.getElementById('username').addEventListener('input', function() {
+      const val = this.value.trim();
+      const msg = document.getElementById('loginMessage');
+      if (!val) {
+        msg.textContent = 'Username required.';
+        msg.style.color = 'red';
+      } else {
+        msg.textContent = '';
+      }
+    });
+    document.getElementById('password').addEventListener('input', function() {
+      const val = this.value.trim();
+      const msg = document.getElementById('loginMessage');
+      if (!val) {
+        msg.textContent = 'Password required.';
+        msg.style.color = 'red';
+      } else {
+        msg.textContent = '';
+      }
+    });
+    document.getElementById('role').addEventListener('change', function() {
+      const val = this.value;
+      const msg = document.getElementById('loginMessage');
+      if (!val) {
+        msg.textContent = 'Please select a role.';
+        msg.style.color = 'red';
+      } else {
+        msg.textContent = '';
+      }
+    });
+    // Form submit
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const role = document.getElementById('role').value;
+      const loginMessage = document.getElementById('loginMessage');
+      let valid = true;
+      loginMessage.textContent = '';
+      if (!username) {
+        loginMessage.textContent = 'Username required.';
+        loginMessage.style.color = 'red';
+        valid = false;
+      } else if (!password) {
+        loginMessage.textContent = 'Password required.';
+        loginMessage.style.color = 'red';
+        valid = false;
+      } else if (!role) {
+        loginMessage.textContent = 'Please select a role.';
+        loginMessage.style.color = 'red';
+        valid = false;
+      }
+      if (valid) {
+        loginMessage.style.color = '#1B3C53';
+        loginMessage.innerHTML = 'Logging in... <span class="spinner"></span>';
+        setTimeout(() => {
+          window.location.href = `landing.html?role=${role}`;
+        }, 1200);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
